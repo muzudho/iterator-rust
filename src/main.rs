@@ -1,6 +1,4 @@
 pub mod sequence;
-pub mod sequence_into_iter;
-pub mod sequence_iter;
 
 fn main() {
     println!("Start.");
@@ -9,6 +7,7 @@ fn main() {
         sequence: vec![
             'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '!',
         ],
+        curr: 0,
     };
 
     // println!("{:?}", &seq.next());
@@ -23,15 +22,10 @@ fn main() {
     println!("Finished.");
 }
 
-/// イテレートされるもの。  
+/// イテレートできるもの。  
 #[derive(Clone)]
 pub struct Sequence {
     sequence: Vec<char>,
-}
-
-/// 自作のイテレーター。  
-pub struct SequenceIter {
-    owner: Box<Sequence>,
-    /// 配列のインデックスのようなもの。
+    /// イテレートで使う配列のインデックスのようなもの。
     curr: usize,
 }
