@@ -1,9 +1,11 @@
-pub mod sequence;
+pub mod sequence1;
+
+use crate::sequence1::Sequence1;
 
 fn main() {
     println!("Start.");
 
-    let seq = Sequence {
+    let seq = Sequence1 {
         sequence: vec![
             'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '!',
         ],
@@ -20,12 +22,4 @@ fn main() {
     );
 
     println!("Finished.");
-}
-
-/// イテレートできるもの。  
-#[derive(Clone)]
-pub struct Sequence {
-    sequence: Vec<char>,
-    /// イテレートで使う配列のインデックスのようなもの。
-    curr: usize,
 }

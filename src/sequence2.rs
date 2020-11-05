@@ -1,6 +1,14 @@
 use crate::Sequence;
 use std::fmt;
 
+/// イテレートできるもの。  
+#[derive(Clone)]
+pub struct Sequence {
+    sequence: Vec<char>,
+    /// イテレートで使う配列のインデックスのようなもの。
+    curr: usize,
+}
+
 /// 普段よく見るイテレーションのベースとなる、  
 /// 普段あまり見ない `items.next()` を使ったイテレーションの実装です。  
 impl Iterator for Sequence {
