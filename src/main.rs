@@ -10,8 +10,8 @@ fn main() {
         ],
     };
 
+    // Hello, World!! の１文字ずつをシングルクォーテーションで囲んだもの。
     println!("{:?}", seq);
-    // Hello, World!!
     assert_eq!(
         "'H''e''l''l''o'','' ''W''o''r''l''d''!''!'",
         format!("{:?}", seq)
@@ -20,12 +20,14 @@ fn main() {
     println!("Finished.");
 }
 
+/// イテレートされるもの。  
 pub struct Sequence {
     sequence: Vec<char>,
 }
 
-/// 配列のインデックスを持ちます。
+/// 自作のイテレーター。  
 pub struct SequenceIter {
     owner: Box<Sequence>,
+    /// 配列のインデックスのようなもの。
     curr: usize,
 }

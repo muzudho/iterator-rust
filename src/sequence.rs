@@ -1,6 +1,7 @@
 use crate::Sequence;
 use std::fmt;
 
+/// デバッグ出力。  
 impl fmt::Debug for Sequence {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut buf = String::new();
