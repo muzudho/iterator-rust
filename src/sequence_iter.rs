@@ -1,6 +1,7 @@
 use crate::SequenceIter;
 
-/// イテレーターの実装。  
+/// 普段よく見るイテレーションのベースとなる、  
+/// 普段あまり見ない `items.next()` を使ったイテレーションの実装です。  
 impl Iterator for SequenceIter {
     // Self::Item ってこれ。
     type Item = Box<char>;
