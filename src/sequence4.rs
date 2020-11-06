@@ -5,9 +5,9 @@ use std::fmt;
 pub struct Sequence4 {
     /// String型は Unicodeなのでイテレートが案外難しい。 `Vec<char>` にしたのが工夫。  
     pub sequence: Vec<char>,
-    /// イテレートで使う配列のインデックスのようなもの。  
-    /// しかし `&mut self` でないと イテレートできない(`iter_mut()相当`)よな。  
-    pub curr: usize,
+    /// 直(非参照)で イテレートするときのカーソル。  
+    /// `&mut self` で イテレートするとき、これを使う。  
+    pub curr_a: usize,
 }
 
 /// 普段よく見る `for item in &items {` イテレーションの下地となる、  
@@ -20,10 +20,11 @@ impl Iterator for Sequence4 {
     //     * When the `Iterator` is finished, `None` is returned.
     //     * Otherwise, the next value is wrapped in `Some` and returned.
     fn next(&mut self) -> Option<Self::Item> {
-        if self.curr < self.sequence.len() {
+        println!("[Sequence4.next] curr_a={}", self.curr_a);
+        if self.curr_a < self.sequence.len() {
             // .clone() するよりは Box でラッピングした方がいいだろうか？
-            let item = Some(Box::new(self.sequence[self.curr]));
-            self.curr += 1;
+            let item = Some(Box::new(self.sequence[self.curr_a]));
+            self.curr_a += 1;
             return item;
         }
 
@@ -56,14 +57,15 @@ impl<'a> IntoIterator for &'a Sequence4 {
         Sequence4IntoIter {
             owner: self,
             // カレントを設定します。
-            curr: 0,
+            curr_b: 0,
         }
     }
 }
 
 pub struct Sequence4IntoIter<'a> {
     owner: &'a Sequence4,
-    curr: usize,
+    /// `for item in &items {` のときにイテレートするときのカーソル。
+    curr_b: usize,
 }
 
 /// 普段よく見る `for item in &items {` イテレーションの下地となる、
@@ -75,10 +77,14 @@ impl<'a> Iterator for Sequence4IntoIter<'a> {
     //     * When the `Iterator` is finished, `None` is returned.
     //     * Otherwise, the next value is wrapped in `Some` and returned.
     fn next(&mut self) -> Option<Self::Item> {
-        if self.curr < self.owner.sequence.len() {
+        println!(
+            "[Sequence4IntoIter.next] curr_a={} curr_b={}",
+            self.owner.curr_a, self.curr_b
+        );
+        if self.curr_b < self.owner.sequence.len() {
             // .clone() するよりは Box でラッピングした方がいいだろうか？
-            let item = Some(Box::new(self.owner.sequence[self.curr]));
-            self.curr += 1;
+            let item = Some(Box::new(self.owner.sequence[self.curr_b]));
+            self.curr_b += 1;
             return item;
         }
 

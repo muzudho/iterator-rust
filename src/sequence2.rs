@@ -20,6 +20,7 @@ impl Iterator for Sequence2 {
     //     * When the `Iterator` is finished, `None` is returned.
     //     * Otherwise, the next value is wrapped in `Some` and returned.
     fn next(&mut self) -> Option<Self::Item> {
+        println!("[Sequence2.next] curr={}", self.curr);
         if self.curr < self.sequence.len() {
             // .clone() するよりは Box でラッピングした方がいいだろうか？
             let item = Some(Box::new(self.sequence[self.curr]));

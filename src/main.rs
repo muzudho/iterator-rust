@@ -37,7 +37,11 @@ fn sub1() {
     // println!("{:?}", &seq.next());
 
     // Hello, World!! の１文字ずつをシングルクォーテーションで囲んだもの。
-    println!("{:?}", &seq);
+    println!(
+        "[seq1]
+{:?}",
+        &seq
+    );
     assert_eq!(
         "'H''e''l''l''o'','' ''W''o''r''l''d''!''!'",
         format!("{:?}", &seq)
@@ -57,7 +61,11 @@ fn sub2() {
     // println!("{:?}", &seq.next());
 
     // Hello, World!! の１文字ずつをシングルクォーテーションで囲んだもの。
-    println!("{:?}", &seq);
+    println!(
+        "[seq2]
+{:?}",
+        &seq
+    );
     assert_eq!(
         "'H''e''l''l''o'','' ''W''o''r''l''d''!''!'",
         format!("{:?}", &seq)
@@ -76,7 +84,11 @@ fn sub3() {
     // println!("{:?}", &seq.next());
 
     // Hello, World!! の１文字ずつをシングルクォーテーションで囲んだもの。
-    println!("{:?}", &seq);
+    println!(
+        "[seq3]
+{:?}",
+        &seq
+    );
     assert_eq!(
         "'H''e''l''l''o'','' ''W''o''r''l''d''!''!'",
         format!("{:?}", &seq)
@@ -90,13 +102,19 @@ fn sub4() {
         sequence: vec![
             'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '!',
         ],
-        curr: 0,
+        curr_a: 0,
     };
 
     // println!("{:?}", &seq.next());
 
     // Hello, World!! の１文字ずつをシングルクォーテーションで囲んだもの。
-    println!("{:?}", &seq);
+    println!(
+        "[&seq4]
+{:?}
+[seq4]
+{:?}",
+        &seq, seq
+    );
     assert_eq!(
         "'H''e''l''l''o'','' ''W''o''r''l''d''!''!'",
         format!("{:?}", &seq)
