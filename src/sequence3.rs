@@ -1,3 +1,6 @@
+//! Sequence と Iterator を別インスタンスとしても、  
+//! Sequence の .clone() は必要。
+
 use std::fmt;
 
 /// イテレートできるもの。  
