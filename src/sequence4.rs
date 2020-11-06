@@ -19,8 +19,11 @@ impl Iterator for Sequence4 {
     //     * When the `Iterator` is finished, `None` is returned.
     //     * Otherwise, the next value is wrapped in `Some` and returned.
     fn next(&mut self) -> Option<Self::Item> {
-        println!("[Sequence4.next] curr_a={}", self.curr_a);
         if self.curr_a < self.sequence.len() {
+            println!(
+                "[Sequence4.next] curr_a={: >2} {}",
+                self.curr_a, self.sequence[self.curr_a]
+            );
             // .clone() するよりは Box でラッピングした方がいいだろうか？
             let item = Some(Box::new(self.sequence[self.curr_a]));
             self.curr_a += 1;
@@ -77,11 +80,14 @@ impl<'a> Iterator for Sequence4IntoIter<'a> {
     //     * When the `Iterator` is finished, `None` is returned.
     //     * Otherwise, the next value is wrapped in `Some` and returned.
     fn next(&mut self) -> Option<Self::Item> {
-        println!(
-            "[Sequence4IntoIter.next] curr_a={} curr_b={}",
-            self.owner.curr_a, self.curr_b
-        );
         if self.curr_b < self.owner.sequence.len() {
+            println!(
+                "[Sequence4IntoIter.next] curr_a={: >2} {} curr_b={: >2} {}",
+                self.owner.curr_a,
+                self.owner.sequence[self.owner.curr_a],
+                self.curr_b,
+                self.owner.sequence[self.curr_b]
+            );
             // .clone() するよりは Box でラッピングした方がいいだろうか？
             let item = Some(Box::new(self.owner.sequence[self.curr_b]));
             self.curr_b += 1;
