@@ -1,7 +1,6 @@
 use std::fmt;
 
-/// イテレートできるもの。  
-#[derive(Clone)]
+/// イテレートできるもの。 Clone derive を外せた。  
 pub struct Sequence4 {
     /// String型は Unicodeなのでイテレートが案外難しい。 `Vec<char>` にしたのが工夫。  
     pub sequence: Vec<char>,
@@ -54,6 +53,7 @@ impl<'a> IntoIterator for &'a Sequence4 {
     /// イントゥ・イテレーターを返します。
     fn into_iter(self) -> Self::IntoIter {
         // イテレーションする都度、インスタンスを作成します。
+        println!("[Sequence4.into_iter] New Sequence4IntoIter.");
         Sequence4IntoIter {
             owner: self,
             // カレントを設定します。

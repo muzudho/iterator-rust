@@ -1,6 +1,6 @@
 use std::fmt;
 
-/// イテレートできるもの。  
+/// イテレートできるもの。 Clone derive を外せない。  
 #[derive(Clone)]
 pub struct Sequence2 {
     /// String型は Unicodeなのでイテレートが案外難しい。 `Vec<char>` にしたのが工夫。  

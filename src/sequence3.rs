@@ -3,7 +3,7 @@
 
 use std::fmt;
 
-/// イテレートできるもの。  
+/// イテレートできるもの。 Clone derive を外せない。  
 #[derive(Clone)]
 pub struct Sequence3 {
     /// String型は Unicodeなのでイテレートが案外難しい。 `Vec<char>` にしたのが工夫。  
@@ -12,6 +12,7 @@ pub struct Sequence3 {
 
 impl Sequence3 {
     pub fn cursor(&self) -> Sequence3Cursor {
+        println!("[Sequence3.cursor] New Sequence3Cursor.");
         Sequence3Cursor {
             // ここで .clone() 要る。意味ない。イテレートするたびに .clone() するのは重くないか？
             owner: Box::new(self.clone()),
